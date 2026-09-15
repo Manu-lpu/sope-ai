@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const links = [
-    { to: "/", label: "Home" },
+    { to: "/", label: "Home", end: true },
     { to: "/features", label: "Features" },
     { to: "/how-it-works", label: "How it works" },
     { to: "/pricing", label: "Pricing" },
@@ -12,10 +12,15 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <h2>SOPE</h2>
-      <div>
-        {links.map(({ to, label }) => (
-          <NavLink key={to} to={to}>
+      <h2 className="brand">SOPE</h2>
+      <div className="nav-links">
+        {links.map(({ to, label, end }) => (
+          <NavLink
+            key={to}
+            to={to}
+            end={end}
+            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
+          >
             {label}
           </NavLink>
         ))}
