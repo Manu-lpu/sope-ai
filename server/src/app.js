@@ -1,6 +1,13 @@
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
+const dotenv = require("dotenv");
+
+const applicationRoutes = require("./routes/application.routes");
+const reviewRoutes = require("./routes/review.routes");
+const userRoutes = require("./routes/user.routes");
+const errorMiddleware = require("./middleware/error.middleware");
+
+dotenv.config();
 
 const app = express();
 
@@ -9,12 +16,21 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
   res.status(200).json({
+    success: true,
     message: "SOPE API is running",
   });
 });
+
+app.use("/api/applications", applicationRoutes);
+app.use("/api/reviews", reviewRoutes);
+app.use("/api/users", userRoutes);
+
+app.use(errorMiddleware);
 
 const PORT = process.env.PORT || 5001;
 
 app.listen(PORT, () => {
   console.log(`SOPE server running on port ${PORT}`);
 });
+
+module.exports = app;
