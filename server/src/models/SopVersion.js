@@ -1,19 +1,35 @@
-class SopVersion {
-  constructor({
-    id,
-    applicationId,
-    versionNumber,
-    content,
-    createdAt,
-    summary,
-  }) {
-    this.id = id;
-    this.applicationId = applicationId;
-    this.versionNumber = versionNumber;
-    this.content = content;
-    this.createdAt = createdAt || new Date().toISOString();
-    this.summary = summary || "";
-  }
-}
+const mongoose = require("mongoose");
 
-module.exports = SopVersion;
+const sopVersionSchema = new mongoose.Schema(
+  {
+    applicationId: {
+      type: Number,
+      required: true,
+    },
+
+    versionNumber: {
+      type: Number,
+      required: true,
+    },
+
+    content: {
+      type: String,
+      required: true,
+    },
+
+    wordCount: {
+      type: Number,
+      required: true,
+    },
+
+    summary: {
+      type: String,
+      default: "",
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+module.exports = mongoose.model("SopVersion", sopVersionSchema);

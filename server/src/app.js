@@ -6,6 +6,8 @@ const applicationRoutes = require("./routes/application.routes");
 const reviewRoutes = require("./routes/review.routes");
 const userRoutes = require("./routes/user.routes");
 const errorMiddleware = require("./middleware/error.middleware");
+const { connectMongo } = require("./config/mongo");
+const sopVersionRoutes = require("./routes/sopVersion.routes");
 
 dotenv.config();
 
@@ -24,13 +26,16 @@ app.get("/", (req, res) => {
 app.use("/api/applications", applicationRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/sop-versions", sopVersionRoutes);
 
 app.use(errorMiddleware);
 
 const PORT = process.env.PORT || 5001;
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`SOPE server running on port ${PORT}`);
+
+  await connectMongo();
 });
 
 module.exports = app;
