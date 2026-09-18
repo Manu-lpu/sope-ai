@@ -5,23 +5,50 @@ import Button from "../components/Button";
 
 const Landing = () => {
   return (
-    <div className="page-shell">
+    <div className="landing-page">
       <Navbar />
-      <main className="hero-section">
-        <div className="hero-copy">
-          <p className="eyebrow">AI-powered SOP review</p>
-          <h1>Improve your SOPs with AI.</h1>
-          <p className="subtitle">
-            Review, compare, and refine your statements before submitting.
-          </p>
-          <div className="cta-row">
+
+      <main className="landing-hero">
+        <div className="hero-label">
+          <span>01.</span>
+          <span>LANDING PAGE</span>
+        </div>
+
+        <div className="hero-content">
+          <h1 className="hero-logo">SOPE</h1>
+
+          <h2 className="hero-title">
+            Make your SOP
+            <br />
+            impossible to ignore.
+          </h2>
+
+          <div className="hero-actions">
             <Link to="/applications/new">
-              <Button type="button">Get Started</Button>
+              <Button type="button">ANALYSE MY SOP →</Button>
             </Link>
-            <Link to="/features" className="secondary-link">
-              Explore features
+
+            <Link to="/features" className="hero-secondary-button">
+              VIEW DEMO
             </Link>
           </div>
+        </div>
+
+        <div className="scribble scribble-left">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div className="scribble scribble-right">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div className="hero-footer">
+          <span>AI-POWERED SOP REVIEW</span>
+          <span>SCROLL TO EXPLORE ↓</span>
         </div>
       </main>
     </div>
